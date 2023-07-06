@@ -36,9 +36,9 @@ describe('Create New User', function() {
         status: 'active'
       }
     }).then((response)=>{
-      cy.log(JSON.stringify(response))
-      expect(response.status).to.equal(201)
-      expect(response.statusText).to.equal('Created')
+      cy.log(JSON.stringify(response));
+      expect(response.status).to.equal(201);
+      expect(response.statusText).to.equal('Created');
 
       const contentType = response.headers['content-type'];
       expect(contentType).to.exist;
