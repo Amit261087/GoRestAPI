@@ -96,9 +96,9 @@ describe('Create New User', function() {
           body: faker.random.words(5)
         }
       }). then((response)=>{
-        cy.log(JSON.stringify(response))
-        expect(response.status).to.equal(201)
-        expect(response.statusText).to.equal('Created')
+        cy.log(JSON.stringify(response));
+        expect(response.status).to.equal(201);
+        expect(response.statusText).to.equal('Created');
         postid = response.body.id
         cy.log(postid)
       })
