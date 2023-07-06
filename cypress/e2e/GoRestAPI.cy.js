@@ -45,7 +45,7 @@ describe('Create New User', function() {
       expect(contentType).to.include('application/json');
 
       userid = response.body.id;
-      cy.log(userid)
+      cy.log(userid);
     })
 
   })
