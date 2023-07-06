@@ -8,8 +8,6 @@ describe('Create New User', function() {
   let userid;
   let postid;
   let commentid;
-  let name;
-  let email;
 
 
   it('Get All Users', function() {
@@ -47,9 +45,6 @@ describe('Create New User', function() {
       expect(contentType).to.include('application/json');
 
       userid = response.body.id;
-      name = response.body.name;
-      email = response.body.email;
-
       cy.log(userid)
     })
 
