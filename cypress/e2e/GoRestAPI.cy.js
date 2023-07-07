@@ -1,9 +1,7 @@
+import testData from '../fixtures/Data.json'
 const faker = require('faker');
 
 describe('Create New User', function() {
-
-  const baseURL = 'https://gorest.co.in/public/v2';
-  const token = "db6d52b6bf37d20ffbe0390ae0ba403c4f56d256f9c8ca31b275ecc67f2cf780";
 
   let userid;
   let postid;
@@ -13,7 +11,7 @@ describe('Create New User', function() {
   it('Get All Users', function() {
     cy.request({
       method: 'GET',
-      url: `${baseURL}/users`
+      url: `${testData.baseURL}/users`
     }).then((response)=>{
       cy.log(JSON.stringify(response))
 
@@ -25,9 +23,9 @@ describe('Create New User', function() {
   it('Create New User', function(){
     cy.request({
       method: 'POST',
-      url: `${baseURL}/users`,
+      url: `${testData.baseURL}/users`,
       headers:{
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${testData.token}`
       },
       body:{
         name: faker.internet.userName(),
@@ -53,9 +51,9 @@ describe('Create New User', function() {
     it('Get User by User ID', function(){
       cy.request({
         method: 'GET',
-        url: `${baseURL}/users/${userid}`,
+        url: `${testData.baseURL}/users/${userid}`,
         headers:{
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${testData.token}`
         }
       }).then((response)=>{
         cy.log(JSON.stringify(response))
@@ -67,9 +65,9 @@ describe('Create New User', function() {
     it('Update User By User ID', function(){
       cy.request({
         method: 'PUT',
-        url: `${baseURL}/users/${userid}`,
+        url: `${testData.baseURL}/users/${userid}`,
         headers:{
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${testData.token}`
         },
         body:{
           name: faker.internet.userName(),
@@ -87,9 +85,9 @@ describe('Create New User', function() {
     it('Create Post for User ID', function(){
       cy.request({
         method: 'POST',
-        url: `${baseURL}/users/${userid}/posts`,
+        url: `${testData.baseURL}/users/${userid}/posts`,
         headers:{
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${testData.token}`
         },
         body:{
           title: faker.random.words(),
@@ -107,9 +105,9 @@ describe('Create New User', function() {
     it('List All Post for User ID', function(){
       cy.request({
         method: 'GET',
-        url: `${baseURL}/users/${userid}/posts`,
+        url: `${testData.baseURL}/users/${userid}/posts`,
         headers:{
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${testData.token}`
         }
       }).then((response)=>{
         cy.log(JSON.stringify(response))
@@ -121,9 +119,9 @@ describe('Create New User', function() {
     it('Get Post by postid for given userid', function(){
       cy.request({
         method: 'GET',
-        url: `${baseURL}/users/${userid}/posts?id=${postid}`,
+        url: `${testData.baseURL}/users/${userid}/posts?id=${postid}`,
         headers:{
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${testData.token}`
         }
       }).then((response)=>{
         cy.log(JSON.stringify(response))
@@ -135,9 +133,9 @@ describe('Create New User', function() {
     it('Comment on Post for given postid & userid', function(){
       cy.request({
         method: 'POST',
-        url: `${baseURL}/posts/${postid}/comments`,
+        url: `${testData.baseURL}/posts/${postid}/comments`,
         headers:{
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${testData.token}`
         },
         body:{
           name: faker.internet.userName(),
@@ -154,9 +152,9 @@ describe('Create New User', function() {
     it('Get Comment on Post for given postid & userid', function(){
       cy.request({
         method: 'GET',
-        url: `${baseURL}/posts/${userid}/comments?id=${commentid}`,
+        url: `${testData.baseURL}/posts/${userid}/comments?id=${commentid}`,
         headers:{
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${testData.token}`
         },
         body:{
           title: faker.random.words(),
@@ -170,9 +168,9 @@ describe('Create New User', function() {
     it.skip('Delete comment on Post by postid for given userid', function(){
       cy.request({
         method: 'DELETE',
-        url: `${baseURL}/posts/${postid}/comments?id=${commentid}`,
+        url: `${testData.baseURL}/posts/${postid}/comments?id=${commentid}`,
         headers:{
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${testData.token}`
         }
       }).then((response)=>{
         cy.log(JSON.stringify(response))
@@ -200,9 +198,9 @@ describe('Create New User', function() {
     it('Delete User by User ID', function(){
       cy.request({
         method: 'DELETE',
-        url: `${baseURL}/users/${userid}`,
+        url: `${testData.baseURL}/users/${userid}`,
         headers:{
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${testData.token}`
         }
       }).then((response)=>{
         cy.log(JSON.stringify(response))
