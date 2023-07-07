@@ -2,7 +2,7 @@ const faker = require('faker');
 
 describe('Create New User', function() {
 
-  const baseURL = 'https://gorest.co.in/';
+  const baseURL = 'https://gorest.co.in/public/v2';
   const token = "db6d52b6bf37d20ffbe0390ae0ba403c4f56d256f9c8ca31b275ecc67f2cf780";
 
   let userid;
@@ -13,7 +13,7 @@ describe('Create New User', function() {
   it('Get All Users', function() {
     cy.request({
       method: 'GET',
-      url: `${baseURL}public/v2/users`
+      url: `${baseURL}/users`
     }).then((response)=>{
       cy.log(JSON.stringify(response))
 
@@ -25,7 +25,7 @@ describe('Create New User', function() {
   it('Create New User', function(){
     cy.request({
       method: 'POST',
-      url: `${baseURL}public/v2/users`,
+      url: `${baseURL}/users`,
       headers:{
         Authorization: `Bearer ${token}`
       },
@@ -53,7 +53,7 @@ describe('Create New User', function() {
     it('Get User by User ID', function(){
       cy.request({
         method: 'GET',
-        url: `${baseURL}public/v2/users/${userid}`,
+        url: `${baseURL}/users/${userid}`,
         headers:{
           Authorization: `Bearer ${token}`
         }
@@ -67,7 +67,7 @@ describe('Create New User', function() {
     it('Update User By User ID', function(){
       cy.request({
         method: 'PUT',
-        url: `${baseURL}public/v2/users/${userid}`,
+        url: `${baseURL}/users/${userid}`,
         headers:{
           Authorization: `Bearer ${token}`
         },
@@ -87,7 +87,7 @@ describe('Create New User', function() {
     it('Create Post for User ID', function(){
       cy.request({
         method: 'POST',
-        url: `${baseURL}/public/v2/users/${userid}/posts`,
+        url: `${baseURL}/users/${userid}/posts`,
         headers:{
           Authorization: `Bearer ${token}`
         },
@@ -107,7 +107,7 @@ describe('Create New User', function() {
     it('List All Post for User ID', function(){
       cy.request({
         method: 'GET',
-        url: `${baseURL}/public/v2/users/${userid}/posts`,
+        url: `${baseURL}/users/${userid}/posts`,
         headers:{
           Authorization: `Bearer ${token}`
         }
@@ -121,7 +121,7 @@ describe('Create New User', function() {
     it('Get Post by postid for given userid', function(){
       cy.request({
         method: 'GET',
-        url: `${baseURL}/public/v2/users/${userid}/posts?id=${postid}`,
+        url: `${baseURL}/users/${userid}/posts?id=${postid}`,
         headers:{
           Authorization: `Bearer ${token}`
         }
@@ -135,7 +135,7 @@ describe('Create New User', function() {
     it('Comment on Post for given postid & userid', function(){
       cy.request({
         method: 'POST',
-        url: `${baseURL}/public/v2/posts/${postid}/comments`,
+        url: `${baseURL}/posts/${postid}/comments`,
         headers:{
           Authorization: `Bearer ${token}`
         },
@@ -154,7 +154,7 @@ describe('Create New User', function() {
     it('Get Comment on Post for given postid & userid', function(){
       cy.request({
         method: 'GET',
-        url: `${baseURL}/public/v2/posts/${userid}/comments?id=${commentid}`,
+        url: `${baseURL}/posts/${userid}/comments?id=${commentid}`,
         headers:{
           Authorization: `Bearer ${token}`
         },
@@ -170,7 +170,7 @@ describe('Create New User', function() {
     it.skip('Delete comment on Post by postid for given userid', function(){
       cy.request({
         method: 'DELETE',
-        url: `${baseURL}/public/v2/posts/${postid}/comments?id=${commentid}`,
+        url: `${baseURL}/posts/${postid}/comments?id=${commentid}`,
         headers:{
           Authorization: `Bearer ${token}`
         }
@@ -185,7 +185,7 @@ describe('Create New User', function() {
     it.skip('Delete Post by postid for given userid', function(){
       cy.request({
         method: 'DELETE',
-        url: `${baseURL}/public/v2/users/${userid}/posts?id=${postid}`,
+        url: `${baseURL}/users/${userid}/posts?id=${postid}`,
         headers:{
           Authorization: `Bearer ${token}`
         }
@@ -200,7 +200,7 @@ describe('Create New User', function() {
     it('Delete User by User ID', function(){
       cy.request({
         method: 'DELETE',
-        url: `${baseURL}public/v2/users/${userid}`,
+        url: `${baseURL}/users/${userid}`,
         headers:{
           Authorization: `Bearer ${token}`
         }
