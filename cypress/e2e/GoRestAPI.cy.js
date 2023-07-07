@@ -175,7 +175,7 @@ describe('Create New User', function() {
       }).then((response)=>{
         cy.log(JSON.stringify(response))
         expect(response.status).to.equal(200)
-        expect(response.statusText).to.equal('OK')
+        expect(response.statusText).to.equal('OK');
 
       })
     })
